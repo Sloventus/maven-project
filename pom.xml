@@ -67,23 +67,28 @@
 
             <!--установки зависимости com.javarush: desktop-game-engine:1.0
             из библиотеки lib в локальный репозиторий (google в помощь); -->
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-install-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.1</version>
                 <executions>
                     <execution>
+                        <id>install-external</id>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
+                        <configuration>
+                            <file>${project.basedir}/lib/desktop-game-engine.jar</file>
+                            <groupId>com.javarush</groupId>
+                            <artifactId>desktop-game-engine</artifactId>
+                            <version>1.0</version>
+                            <packaging>jar</packaging>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <groupId>com.javarush</groupId>
-                    <artifactId>desktop-game-engine</artifactId>
-                    <version>1.0</version>
-                    <file>D:\IntelliJ IDEA Community Edition 2023.3.1\MyProjects\javaRush\module3\mavenProject\lib\desktop-game-engine.jar</file>
-                    <packaging>jar</packaging>
-                </configuration>
+
             </plugin>
 
             <!--плагин, который соберет все зависимости (с scope compile)
